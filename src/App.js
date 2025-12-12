@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import {useState} from "react";
+import UserLogin from "./components/UserLogin";
+import Posts from "./components/Posts.js";
+const App=()=> {
+  const [loginUser,setLoginUser] = useState(null);
+  const handleUserInfo =(user)=>{
+    setLoginUser(user);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="App">
+      {loginUser ? <p>{loginUser.nickname}님 환영</p> :
+      <UserLogin onUser={handleUserInfo}/>
+      }
+      <Posts/>
     </div>
   );
 }

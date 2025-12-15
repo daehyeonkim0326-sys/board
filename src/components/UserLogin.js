@@ -1,10 +1,10 @@
-import React from 'react'
 import { loginUser } from '../api/usersAPI'
+import { useState } from 'react'
 const UserLogin =({onUser})=>{
     
+    const [email,setEmail] = useState('');
+    const [password,setPassword] =useState('');
     const handleLogin= async()=>{
-        const email ='chulsu@test.com';
-        const password='1234';
         try{
             //api호출
             const userData = await loginUser({email,password});
@@ -15,8 +15,20 @@ const UserLogin =({onUser})=>{
     }
 
   return (
-    <div classname="user-login">
-        <button onClick={handleLogin}></button>
+    <div className="user-login">
+        <input 
+        type='email'
+        placeholder='EMAIL'
+        value={email}
+        onChange={(e)=>{setEmail(e.target.value)}}
+        />
+        <input 
+        type='password'
+        placeholder='PW'
+        value={password}
+        onChange={(e)=>{setPassword(e.target.value)}}
+        />
+        <button onClick={handleLogin}>로그인</button>
     </div>
   )
 }
